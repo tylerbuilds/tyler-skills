@@ -8,14 +8,15 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-  security-events: write
-  id-token: write
+permissions: read-all
 
 jobs:
   scorecard:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,4 +29,3 @@ jobs:
       - uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results.sarif
-
