@@ -4,6 +4,14 @@ This repo is meant to grow slowly and cleanly.
 
 Each skill should be useful on its own. If a skill needs five private systems, a specific personal setup, or hidden context to work, it is not ready to be public.
 
+Before adding or changing skills in a fresh checkout, run:
+
+```bash
+./scripts/install-git-hooks.sh
+```
+
+That makes the secret scan run automatically on `git push`.
+
 ## Folder shape
 
 ```text

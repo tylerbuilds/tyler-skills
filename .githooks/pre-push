@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+root="$(git rev-parse --show-toplevel)"
+cd "$root"
+
+echo "== Tyler Skills pre-push public safety gate =="
+./scripts/setup-secret-scanners.sh
+./scripts/secret-scan.sh
+echo "== Public safety gate passed =="

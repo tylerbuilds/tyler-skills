@@ -89,15 +89,23 @@ download_and_verify() {
   tar -xzf "$archive" -C "$tmp_dir/$name"
 }
 
-gitleaks_asset="gitleaks_${gitleaks_version}_${os}_${gitleaks_arch}.tar.gz"
-gitleaks_checksums="gitleaks_${gitleaks_version}_checksums.txt"
-download_and_verify "gitleaks" "$gitleaks_version" "gitleaks/gitleaks" "$gitleaks_asset" "$gitleaks_checksums"
-install "$tmp_dir/gitleaks/gitleaks" "$bin_dir/gitleaks"
+if [[ -x "$bin_dir/gitleaks" ]] && [[ "$("$bin_dir/gitleaks" version 2>/dev/null)" == "$gitleaks_version" ]]; then
+  echo "Gitleaks $gitleaks_version already installed at $bin_dir/gitleaks"
+else
+  gitleaks_asset="gitleaks_${gitleaks_version}_${os}_${gitleaks_arch}.tar.gz"
+  gitleaks_checksums="gitleaks_${gitleaks_version}_checksums.txt"
+  download_and_verify "gitleaks" "$gitleaks_version" "gitleaks/gitleaks" "$gitleaks_asset" "$gitleaks_checksums"
+  install "$tmp_dir/gitleaks/gitleaks" "$bin_dir/gitleaks"
+fi
 
-trufflehog_asset="trufflehog_${trufflehog_version}_${os}_${trufflehog_arch}.tar.gz"
-trufflehog_checksums="trufflehog_${trufflehog_version}_checksums.txt"
-download_and_verify "trufflehog" "$trufflehog_version" "trufflesecurity/trufflehog" "$trufflehog_asset" "$trufflehog_checksums"
-install "$tmp_dir/trufflehog/trufflehog" "$bin_dir/trufflehog"
+if [[ -x "$bin_dir/trufflehog" ]] && "$bin_dir/trufflehog" --version 2>/dev/null | grep -q "$trufflehog_version"; then
+  echo "TruffleHog $trufflehog_version already installed at $bin_dir/trufflehog"
+else
+  trufflehog_asset="trufflehog_${trufflehog_version}_${os}_${trufflehog_arch}.tar.gz"
+  trufflehog_checksums="trufflehog_${trufflehog_version}_checksums.txt"
+  download_and_verify "trufflehog" "$trufflehog_version" "trufflesecurity/trufflehog" "$trufflehog_asset" "$trufflehog_checksums"
+  install "$tmp_dir/trufflehog/trufflehog" "$bin_dir/trufflehog"
+fi
 
 echo
 echo "Installed scanners:"

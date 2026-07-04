@@ -6,6 +6,12 @@ The bar is not "does this sound clever?" The bar is "could a sensible agent foll
 
 ## Add a skill
 
+0. In a fresh checkout, install hooks:
+
+```bash
+./scripts/install-git-hooks.sh
+```
+
 1. Copy the template:
 
 ```bash

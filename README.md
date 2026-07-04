@@ -44,6 +44,18 @@ Then invoke it by name if your agent supports skill loading:
 
 If your agent does not support slash skills, paste the contents of `skills/cloudflare-website-hardening/SKILL.md` into the agent context and ask it to follow the workflow.
 
+## Set up this repo once
+
+After cloning, run:
+
+```bash
+./scripts/install-git-hooks.sh
+```
+
+That installs the pinned scanner CLIs if needed and configures Git to use the tracked `pre-push` hook in `.githooks/`. After that, every local push runs the public safety gate automatically.
+
+GitHub Actions runs the same gate again on push and pull request, so the local hook catches mistakes early and CI catches anything that slips through.
+
 ## Add a new skill
 
 Future skills should follow the same shape:

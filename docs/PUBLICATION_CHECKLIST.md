@@ -2,6 +2,15 @@
 
 Run this before making the repo public or pushing a new public skill.
 
+## 0. Confirm hooks are active
+
+```bash
+./scripts/install-git-hooks.sh
+git config core.hooksPath
+```
+
+Expected: `.githooks`.
+
 ## 1. Check the working tree
 
 ```bash
