@@ -79,6 +79,12 @@ Run:
 ./scripts/audit-public-safety.sh
 ```
 
+For a pre-public release check, run:
+
+```bash
+./scripts/secret-scan.sh
+```
+
 Then manually read:
 
 - the changed skill
@@ -88,4 +94,3 @@ Then manually read:
 - `git diff --cached`
 
 Automation helps, but it is not a substitute for reading the thing you are about to publish.
-

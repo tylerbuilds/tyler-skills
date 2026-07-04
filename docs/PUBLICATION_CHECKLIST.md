@@ -20,7 +20,15 @@ Make sure every changed file is intended for public release.
 
 This catches common mistakes. It will not catch everything.
 
-## 3. Read the history you are about to publish
+## 3. Run the full secret scan
+
+```bash
+./scripts/secret-scan.sh
+```
+
+This runs the local public-safety audit, Gitleaks, and TruffleHog OSS. It needs either the tools installed locally or Docker available.
+
+## 4. Read the history you are about to publish
 
 ```bash
 git log --oneline --all
@@ -29,7 +37,7 @@ git log --all -p -- . ':(exclude).git'
 
 If sensitive content ever entered a commit, removing it from the latest file is not enough. Rewrite the local history before publishing, or start from a fresh clean repo.
 
-## 4. Check for accidental private context
+## 5. Check for accidental private context
 
 Look for:
 
@@ -40,7 +48,7 @@ Look for:
 - account IDs, zone IDs, customer IDs, database IDs, project IDs
 - real incident notes, logs, screenshots, or exported data
 
-## 5. Check credential guidance
+## 6. Check credential guidance
 
 Public skills should tell users to:
 
@@ -50,7 +58,7 @@ Public skills should tell users to:
 - revoke short-lived tokens after use
 - ask before live mutations
 
-## 6. Enable GitHub protections after publishing
+## 7. Enable GitHub protections after publishing
 
 In GitHub, enable or confirm:
 
@@ -62,10 +70,12 @@ GitHub's protections are useful, but they are a second line of defence. The firs
 
 References:
 
+- Gitleaks: https://github.com/gitleaks/gitleaks
+- TruffleHog OSS: https://github.com/trufflesecurity/trufflehog
 - GitHub secret scanning: https://docs.github.com/en/code-security/concepts/secret-security/secret-scanning
 - Removing sensitive data from Git history: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository
 
-## 7. Final publish command
+## 8. Final publish command
 
 Only after the checks pass:
 

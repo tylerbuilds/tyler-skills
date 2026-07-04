@@ -66,6 +66,12 @@ Then run the public safety audit before committing:
 ./scripts/audit-public-safety.sh
 ```
 
+For a stronger pre-public check, run the full secret scan as well:
+
+```bash
+./scripts/secret-scan.sh
+```
+
 More detail is in [`docs/ADDING_SKILLS.md`](docs/ADDING_SKILLS.md).
 
 ## Cloudflare API token
@@ -115,6 +121,14 @@ The skill also tells agents to:
 
 Before anything here becomes public, run [`docs/PUBLICATION_CHECKLIST.md`](docs/PUBLICATION_CHECKLIST.md). The checklist exists because deleting a secret from the latest file is not enough if it is still in Git history.
 
+This repo also includes a standard CI gate using:
+
+- the local public-safety audit
+- Gitleaks core through its public container image
+- TruffleHog OSS through its official GitHub Action
+
+Gitleaks core is MIT licensed. TruffleHog OSS is AGPL-3.0 licensed. That is fine for running them as external scanning tools, but do not copy their code into this repo.
+
 ## Helper scripts
 
 Read-only scripts live inside the skill:
@@ -137,5 +151,7 @@ This is not a guarantee that a website is secure. It is a practical hardening wo
 - Cloudflare Rulesets API: https://developers.cloudflare.com/ruleset-engine/rulesets-api/create/
 - Cloudflare Access applications: https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/
 - Cloudflare Turnstile widgets API: https://developers.cloudflare.com/turnstile/get-started/widget-management/api/
+- Gitleaks: https://github.com/gitleaks/gitleaks
+- TruffleHog OSS: https://github.com/trufflesecurity/trufflehog
 - GitHub secret scanning: https://docs.github.com/en/code-security/concepts/secret-security/secret-scanning
 - Removing sensitive data from Git history: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository

@@ -20,6 +20,7 @@ cp -R templates/new-skill skills/my-new-skill
 
 ```bash
 ./scripts/audit-public-safety.sh
+./scripts/secret-scan.sh
 ```
 
 ## Public safety rules
@@ -52,4 +53,3 @@ Prefer:
 - least-privilege credentials
 - short checklists
 - honest `done`, `pending`, and `blocked` states
-
