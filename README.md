@@ -137,3 +137,5 @@ This is not a guarantee that a website is secure. It is a practical hardening wo
 - Cloudflare Rulesets API: https://developers.cloudflare.com/ruleset-engine/rulesets-api/create/
 - Cloudflare Access applications: https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/
 - Cloudflare Turnstile widgets API: https://developers.cloudflare.com/turnstile/get-started/widget-management/api/
+- GitHub secret scanning: https://docs.github.com/en/code-security/concepts/secret-security/secret-scanning
+- Removing sensitive data from Git history: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository

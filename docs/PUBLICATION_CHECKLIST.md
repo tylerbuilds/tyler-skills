@@ -60,6 +60,11 @@ In GitHub, enable or confirm:
 
 GitHub's protections are useful, but they are a second line of defence. The first line is still not committing sensitive material.
 
+References:
+
+- GitHub secret scanning: https://docs.github.com/en/code-security/concepts/secret-security/secret-scanning
+- Removing sensitive data from Git history: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository
+
 ## 7. Final publish command
 
 Only after the checks pass:
@@ -67,4 +72,3 @@ Only after the checks pass:
 ```bash
 gh repo create <owner>/<repo> --public --source=. --remote=origin --push
 ```
-
