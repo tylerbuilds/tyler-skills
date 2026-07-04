@@ -1,10 +1,18 @@
 # Tyler Skills
 
-Reusable agent skills for practical website and automation work.
+Free agent skills I have built for my own work, cleaned up so other people can use them without inheriting my private setup.
 
-The first public skill is `cloudflare-website-hardening`: a safety-first agent workflow for tightening Cloudflare protection around a website without handing an agent a broad, permanent key or blindly breaking legitimate traffic.
+The point is simple: small, practical skills that help an agent do one useful job properly. Not magic. Not a giant framework. Just reusable working instructions, helper scripts, and the checks I wish I had written down earlier.
 
-## Skill: Cloudflare Website Hardening
+This repo will grow over time. The first public skill is `cloudflare-website-hardening`, which helps an agent tighten up a website running through Cloudflare without handing it a broad permanent key or letting it break legitimate traffic.
+
+## Current skills
+
+| Skill | What it does |
+| --- | --- |
+| [`cloudflare-website-hardening`](skills/cloudflare-website-hardening/SKILL.md) | Reviews and hardens a Cloudflare website using scoped API tokens, conservative WAF planning, Access, Turnstile, origin-firewall readiness checks, and public smoke tests. |
+
+## Cloudflare Website Hardening
 
 Use this when you want an agent to review and harden a site on Cloudflare. It covers:
 
@@ -19,7 +27,7 @@ Use this when you want an agent to review and harden a site on Cloudflare. It co
 
 The skill is deliberately cautious. It tells the agent to prove the current state, propose changes, ask before mutations, and avoid overclaiming protection while DNS, proxying, or token permissions are still pending.
 
-## Install
+## Use a skill
 
 Copy the skill folder into the skills directory used by your agent environment:
 
@@ -35,6 +43,30 @@ Then invoke it by name if your agent supports skill loading:
 ```
 
 If your agent does not support slash skills, paste the contents of `skills/cloudflare-website-hardening/SKILL.md` into the agent context and ask it to follow the workflow.
+
+## Add a new skill
+
+Future skills should follow the same shape:
+
+- One folder under `skills/<skill-name>/`.
+- A `SKILL.md` with clear trigger rules, safety rules, workflow, and verification.
+- Optional `scripts/` and `templates/` folders.
+- No private domains, keys, internal paths, account IDs, real customer data, or private examples.
+- A quick way to prove the skill does not just sound useful, but actually works.
+
+Use the template:
+
+```bash
+cp -R templates/new-skill skills/my-new-skill
+```
+
+Then run the public safety audit before committing:
+
+```bash
+./scripts/audit-public-safety.sh
+```
+
+More detail is in [`docs/ADDING_SKILLS.md`](docs/ADDING_SKILLS.md).
 
 ## Cloudflare API token
 
@@ -81,6 +113,8 @@ The skill also tells agents to:
 - Ask before applying WAF, Access, DNS, or firewall mutations.
 - Never lock an origin firewall until certificate renewal and bypass paths are proved.
 
+Before anything here becomes public, run [`docs/PUBLICATION_CHECKLIST.md`](docs/PUBLICATION_CHECKLIST.md). The checklist exists because deleting a secret from the latest file is not enough if it is still in Git history.
+
 ## Helper scripts
 
 Read-only scripts live inside the skill:
@@ -91,6 +125,10 @@ skills/cloudflare-website-hardening/scripts/cloudflare-zone-readiness.sh example
 ```
 
 They print DNS, HTTP, probe-path, and Cloudflare zone readiness information. They do not change Cloudflare or your origin.
+
+## What this is not
+
+This is not a guarantee that a website is secure. It is a practical hardening workflow for obvious mistakes, common abuse paths, and risky agent behaviour. You still need good application security, backups, patching, least-privilege accounts, monitoring, and someone sensible looking at the actual system.
 
 ## References
 
