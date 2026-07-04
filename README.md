@@ -1,10 +1,10 @@
 # Tyler Skills
 
-Free agent skills I have built for my own work, cleaned up so other people can use them without inheriting my private setup.
+These are agent skills I use in my own projects, with the private paths, account details and project-specific assumptions removed.
 
-The point is simple: small, practical skills that help an agent do one useful job properly. Not magic. Not a giant framework. Just reusable working instructions, helper scripts, and the checks I wish I had written down earlier.
+A skill is just a working brief for an agent: what to check first, what not to touch, which scripts help, and what proof counts as done.
 
-This repo will grow over time. The first public skill is `cloudflare-website-hardening`, which helps an agent tighten up a website running through Cloudflare without handing it a broad permanent key or letting it break legitimate traffic. The second is `repo-safety-kit`, which helps non-developers, non-technical founders, and vibe coders get the same repo hygiene an advanced developer would usually wire in by default.
+The first two cover jobs I kept needing to repeat: hardening a Cloudflare-backed website, and putting basic repo safety in place before people or agents start moving quickly.
 
 ## Current skills
 
