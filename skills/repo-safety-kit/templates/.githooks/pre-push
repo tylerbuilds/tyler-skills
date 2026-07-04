@@ -4,6 +4,5 @@ set -euo pipefail
 root="$(git rev-parse --show-toplevel)"
 cd "$root"
 
-echo "== Tyler Skills pre-push public safety gate =="
 ./scripts/verify.sh
-echo "== Public safety gate passed =="
+

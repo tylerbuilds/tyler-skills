@@ -16,11 +16,12 @@ check() {
   local pattern="$2"
   local matches
   echo "-- $label --"
-  matches="$(rg -n --hidden --no-ignore -I -e "$pattern" \
+  matches="$(rg -n --with-filename --hidden --no-ignore -I -e "$pattern" \
     --glob '!.git/**' \
     --glob '!.tools/**' \
     --glob '!.scanner-bin/**' \
     --glob '!scripts/audit-public-safety.sh' \
+    --glob '!skills/repo-safety-kit/scripts/repo-safety-audit.sh' \
     --glob '!docs/PUBLICATION_CHECKLIST.md' \
     . | awk -F: '{print $1 ":" $2}' | sort -u || true)"
 

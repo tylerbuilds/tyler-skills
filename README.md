@@ -4,13 +4,38 @@ Free agent skills I have built for my own work, cleaned up so other people can u
 
 The point is simple: small, practical skills that help an agent do one useful job properly. Not magic. Not a giant framework. Just reusable working instructions, helper scripts, and the checks I wish I had written down earlier.
 
-This repo will grow over time. The first public skill is `cloudflare-website-hardening`, which helps an agent tighten up a website running through Cloudflare without handing it a broad permanent key or letting it break legitimate traffic.
+This repo will grow over time. The first public skill is `cloudflare-website-hardening`, which helps an agent tighten up a website running through Cloudflare without handing it a broad permanent key or letting it break legitimate traffic. The second is `repo-safety-kit`, which helps non-developers, non-technical founders, and vibe coders get the same repo hygiene an advanced developer would usually wire in by default.
 
 ## Current skills
 
 | Skill | What it does |
 | --- | --- |
 | [`cloudflare-website-hardening`](skills/cloudflare-website-hardening/SKILL.md) | Reviews and hardens a Cloudflare website using scoped API tokens, conservative WAF planning, Access, Turnstile, origin-firewall readiness checks, and public smoke tests. |
+| [`repo-safety-kit`](skills/repo-safety-kit/SKILL.md) | Audits and bootstraps a repository with agent guidance, hooks, verify scripts, CI, Dependabot, CodeQL/Scorecard guidance, security docs, and release hygiene. |
+
+## Repo Safety Kit
+
+Use this when a repo needs a sensible baseline before agents or humans start moving fast. The goal is that someone who is not a professional developer can still end up with the practical guardrails a strong developer would expect:
+
+- agent instructions
+- local verify scripts
+- tracked pre-push hooks
+- secret scanning
+- CI
+- Dependabot
+- CodeQL or code scanning guidance
+- OpenSSF Scorecard for public repos
+- security policy
+- env examples
+- release and verification checklists
+
+Start with the read-only audit:
+
+```bash
+skills/repo-safety-kit/scripts/repo-safety-audit.sh /path/to/repo
+```
+
+Then apply only the templates that fit the repo. The skill is deliberately not a blind copy-paste job, because a content site, a public skill repo, and a live SaaS do not need exactly the same gate.
 
 ## Cloudflare Website Hardening
 
@@ -29,27 +54,29 @@ The skill is deliberately cautious. It tells the agent to prove the current stat
 
 ## Use a skill
 
-Copy the skill folder into the skills directory used by your agent environment:
+Copy the skill folder you want into the skills directory used by your agent environment:
 
 ```bash
 mkdir -p ~/.agents/skills
 cp -R skills/cloudflare-website-hardening ~/.agents/skills/
+cp -R skills/repo-safety-kit ~/.agents/skills/
 ```
 
 Then invoke it by name if your agent supports skill loading:
 
 ```text
 /cloudflare-website-hardening example.com
+/repo-safety-kit /path/to/repo
 ```
 
-If your agent does not support slash skills, paste the contents of `skills/cloudflare-website-hardening/SKILL.md` into the agent context and ask it to follow the workflow.
+If your agent does not support slash skills, paste the relevant `SKILL.md` into the agent context and ask it to follow the workflow.
 
 ## Set up this repo once
 
 After cloning, run:
 
 ```bash
-./scripts/install-git-hooks.sh
+./scripts/setup-git-hooks.sh
 ```
 
 That installs the pinned scanner CLIs if needed and configures Git to use the tracked `pre-push` hook in `.githooks/`. After that, every local push runs the public safety gate automatically.
