@@ -82,6 +82,7 @@ Run:
 For a pre-public release check, run:
 
 ```bash
+./scripts/setup-secret-scanners.sh
 ./scripts/secret-scan.sh
 ```
 

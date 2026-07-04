@@ -69,6 +69,7 @@ Then run the public safety audit before committing:
 For a stronger pre-public check, run the full secret scan as well:
 
 ```bash
+./scripts/setup-secret-scanners.sh
 ./scripts/secret-scan.sh
 ```
 
@@ -124,10 +125,16 @@ Before anything here becomes public, run [`docs/PUBLICATION_CHECKLIST.md`](docs/
 This repo also includes a standard CI gate using:
 
 - the local public-safety audit
-- Gitleaks core through its public container image
-- TruffleHog OSS through its official GitHub Action
+- Gitleaks core via the official CLI release
+- TruffleHog OSS via the official CLI release
 
 Gitleaks core is MIT licensed. TruffleHog OSS is AGPL-3.0 licensed. That is fine for running them as external scanning tools, but do not copy their code into this repo.
+
+By default, `secret-scan.sh` runs TruffleHog with verification disabled so it does not make outbound checks against providers for candidate secrets. If you deliberately want live verification, run:
+
+```bash
+TRUFFLEHOG_VERIFY=1 ./scripts/secret-scan.sh
+```
 
 ## Helper scripts
 

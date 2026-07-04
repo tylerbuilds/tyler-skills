@@ -14,12 +14,17 @@ fi
 check() {
   local label="$1"
   local pattern="$2"
+  local matches
   echo "-- $label --"
-  if rg -n --hidden --no-ignore -I -e "$pattern" \
+  matches="$(rg -n --hidden --no-ignore -I -e "$pattern" \
     --glob '!.git/**' \
     --glob '!scripts/audit-public-safety.sh' \
     --glob '!docs/PUBLICATION_CHECKLIST.md' \
-    .; then
+    . | awk -F: '{print $1 ":" $2}' | sort -u || true)"
+
+  if [[ -n "$matches" ]]; then
+    echo "Potential public-safety matches found. Content redacted; inspect locally before publishing:"
+    printf '%s\n' "$matches"
     fail=1
   else
     echo "ok"

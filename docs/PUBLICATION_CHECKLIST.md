@@ -23,10 +23,13 @@ This catches common mistakes. It will not catch everything.
 ## 3. Run the full secret scan
 
 ```bash
+./scripts/setup-secret-scanners.sh
 ./scripts/secret-scan.sh
 ```
 
-This runs the local public-safety audit, Gitleaks, and TruffleHog OSS. It needs either the tools installed locally or Docker available.
+This installs repo-local scanner CLIs under `.tools/bin`, then runs the local public-safety audit, Gitleaks, and TruffleHog OSS. If you already have the tools installed globally, `secret-scan.sh` can use those too.
+
+TruffleHog verification is disabled by default to avoid outbound provider checks against candidate secrets. Run `TRUFFLEHOG_VERIFY=1 ./scripts/secret-scan.sh` only when you deliberately want live verification.
 
 ## 4. Read the history you are about to publish
 

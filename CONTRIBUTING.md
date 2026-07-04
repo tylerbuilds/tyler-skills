@@ -20,6 +20,7 @@ cp -R templates/new-skill skills/my-new-skill
 
 ```bash
 ./scripts/audit-public-safety.sh
+./scripts/setup-secret-scanners.sh
 ./scripts/secret-scan.sh
 ```
 
