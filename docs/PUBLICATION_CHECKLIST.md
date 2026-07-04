@@ -27,9 +27,9 @@ This catches common mistakes. It will not catch everything.
 ./scripts/secret-scan.sh
 ```
 
-This installs repo-local scanner CLIs under `.tools/bin`, then runs the local public-safety audit, Gitleaks, and TruffleHog OSS. If you already have the tools installed globally, `secret-scan.sh` can use those too.
+This installs scanner CLIs into a user cache, normally `~/.cache/tyler-skills/bin`, then runs the local public-safety audit, Gitleaks, and TruffleHog OSS. If you already have the tools installed globally, `secret-scan.sh` can use those too.
 
-TruffleHog verification is disabled by default to avoid outbound provider checks against candidate secrets. Run `TRUFFLEHOG_VERIFY=1 ./scripts/secret-scan.sh` only when you deliberately want live verification.
+TruffleHog verification is disabled by default to avoid outbound provider checks against candidate secrets. Its raw output is redacted from logs. Run `TRUFFLEHOG_VERIFY=1 ./scripts/secret-scan.sh` only when you deliberately want live verification.
 
 ## 4. Read the history you are about to publish
 

@@ -4,7 +4,8 @@ set -euo pipefail
 root="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 cd "$root"
 
-bin_dir="${SECRET_SCANNER_BIN_DIR:-$root/.tools/bin}"
+default_cache_root="${XDG_CACHE_HOME:-${HOME:-$root/.tools}/.cache}"
+bin_dir="${SECRET_SCANNER_BIN_DIR:-$default_cache_root/tyler-skills/bin}"
 tmp_dir="$(mktemp -d)"
 trap 'rm -rf "$tmp_dir"' EXIT
 

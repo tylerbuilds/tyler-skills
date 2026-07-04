@@ -18,6 +18,8 @@ check() {
   echo "-- $label --"
   matches="$(rg -n --hidden --no-ignore -I -e "$pattern" \
     --glob '!.git/**' \
+    --glob '!.tools/**' \
+    --glob '!.scanner-bin/**' \
     --glob '!scripts/audit-public-safety.sh' \
     --glob '!docs/PUBLICATION_CHECKLIST.md' \
     . | awk -F: '{print $1 ":" $2}' | sort -u || true)"
@@ -49,7 +51,7 @@ if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   echo
 else
   echo "-- file list --"
-  find . -type f -not -path './.git/*' | sort
+  find . -type f -not -path './.git/*' -not -path './.tools/*' -not -path './.scanner-bin/*' | sort
   echo
 fi
 

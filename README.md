@@ -130,7 +130,9 @@ This repo also includes a standard CI gate using:
 
 Gitleaks core is MIT licensed. TruffleHog OSS is AGPL-3.0 licensed. That is fine for running them as external scanning tools, but do not copy their code into this repo.
 
-By default, `secret-scan.sh` runs TruffleHog with verification disabled so it does not make outbound checks against providers for candidate secrets. If you deliberately want live verification, run:
+`setup-secret-scanners.sh` installs the scanner binaries into a user cache by default, normally `~/.cache/tyler-skills/bin`. Override with `SECRET_SCANNER_BIN_DIR` if you need a different location.
+
+By default, `secret-scan.sh` runs TruffleHog with verification disabled so it does not make outbound checks against providers for candidate secrets. It also redacts TruffleHog raw output from logs. If you deliberately want live verification, run:
 
 ```bash
 TRUFFLEHOG_VERIFY=1 ./scripts/secret-scan.sh
