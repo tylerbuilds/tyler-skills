@@ -34,13 +34,19 @@ check "cloudflare-like bearer token text" 'cf[a-zA-Z0-9_-]{30,}'
 check "non-placeholder cloudflare ids in env examples" 'CLOUDFLARE_(ACCOUNT|ZONE)_ID=[0-9a-fA-F]{16,}'
 check "raw bearer auth values" 'Authorization:[[:space:]]*Bearer[[:space:]]+[A-Za-z0-9._~+/=-]{20,}'
 
-echo "-- git tracked files --"
-git ls-files
-echo
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo "-- git tracked files --"
+  git ls-files
+  echo
 
-echo "-- untracked public files --"
-git ls-files --others --exclude-standard
-echo
+  echo "-- untracked public files --"
+  git ls-files --others --exclude-standard
+  echo
+else
+  echo "-- file list --"
+  find . -type f -not -path './.git/*' | sort
+  echo
+fi
 
 if [[ "$fail" -ne 0 ]]; then
   echo "Public safety audit failed. Review the matches above before publishing." >&2
