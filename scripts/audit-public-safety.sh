@@ -18,6 +18,7 @@ check() {
   echo "-- $label --"
   matches="$(rg -n --with-filename --hidden --no-ignore -I -e "$pattern" \
     --glob '!.git/**' \
+    --glob '!.git' \
     --glob '!.tools/**' \
     --glob '!.scanner-bin/**' \
     --glob '!scripts/audit-public-safety.sh' \
