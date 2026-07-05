@@ -4,14 +4,21 @@ These are agent skills I use in my own projects, with the private paths, account
 
 A skill is just a working brief for an agent: what to check first, what not to touch, which scripts help, and what proof counts as done.
 
-The first two cover jobs I kept needing to repeat: hardening a Cloudflare-backed website, and putting basic repo safety in place before people or agents start moving quickly.
+The repo starts with repeatable skills for bounded sprint delivery, Cloudflare website hardening, and practical repo safety.
 
 ## Current skills
 
 | Skill | What it does |
 | --- | --- |
+| [`batch-sprint`](skills/batch-sprint/SKILL.md) | Runs a bounded overseer-style delivery sprint through issues, isolated branches, proof, PR review, approved merge, cleanup, and closeout. |
 | [`cloudflare-website-hardening`](skills/cloudflare-website-hardening/SKILL.md) | Reviews and hardens a Cloudflare website using scoped API tokens, conservative WAF planning, Access, Turnstile, origin-firewall readiness checks, and public smoke tests. |
 | [`repo-safety-kit`](skills/repo-safety-kit/SKILL.md) | Audits and bootstraps a repository with agent guidance, hooks, verify scripts, CI, Dependabot, CodeQL/Scorecard guidance, security docs, and release hygiene. |
+
+## Batch Sprint
+
+Use this when a job needs the full delivery loop rather than a one-off edit: scope lock, issue setup, isolated implementation, proof, PR review, approved merge, cleanup, and closeout.
+
+The skill is strict about authority. It does not let an agent deploy, send, change secrets, or merge without an explicit policy for that sprint.
 
 ## Repo Safety Kit
 
@@ -60,6 +67,7 @@ Copy the skill folder you want into the skills directory used by your agent envi
 mkdir -p ~/.agents/skills
 cp -R skills/cloudflare-website-hardening ~/.agents/skills/
 cp -R skills/repo-safety-kit ~/.agents/skills/
+cp -R skills/batch-sprint ~/.agents/skills/
 ```
 
 Then invoke it by name if your agent supports skill loading:
@@ -67,6 +75,7 @@ Then invoke it by name if your agent supports skill loading:
 ```text
 /cloudflare-website-hardening example.com
 /repo-safety-kit /path/to/repo
+/batch-sprint "Ship this bounded repo change through issues, PR, proof, and closeout"
 ```
 
 If your agent does not support slash skills, paste the relevant `SKILL.md` into the agent context and ask it to follow the workflow.
