@@ -33,6 +33,7 @@ This repo contains public-safe skill folders that give an agent a clear operatin
 | Safer agent work in public repos | Public-safety guidance, hooks, scans, and release checks | `repo-safety-kit` can add a secret-scan gate before a push. |
 | Bounded delivery instead of loose prompting | Scope lock, issue setup, isolated branches, proof, PR review, and closeout | `batch-sprint` tells an agent how to run a sprint without silently merging. |
 | Cloudflare website hardening without reckless mutations | Read-only proof first, scoped tokens, careful mutation gates, and smoke tests | `cloudflare-website-hardening` separates audit evidence from approved changes. |
+| Fast DeepSeek batch work without loose API scripts | CLI/MCP proof, fake and dry-run defaults, approval-gated live calls, cost ledgers, and no-mock e2e | `deepseek-harness-ops` keeps live inference bounded and reviewable. |
 | Reusable agent instructions | Skills are plain folders with `SKILL.md`, optional scripts, and optional templates | Copy one folder into `~/.agents/skills` and invoke it by name. |
 
 ## Quick example
@@ -62,6 +63,7 @@ cp -R skills/repo-safety-kit ~/.agents/skills/
 | --- | --- | --- |
 | [`batch-sprint`](skills/batch-sprint/SKILL.md) | A job needs the full delivery loop rather than a one-off edit. | Scope, issue setup, isolated implementation, proof, PR review, approved merge, cleanup, and closeout. |
 | [`cloudflare-website-hardening`](skills/cloudflare-website-hardening/SKILL.md) | A Cloudflare-backed website needs review or hardening. | DNS, HTTP, token-scope, ruleset, Access, Turnstile, origin-firewall, and smoke-test evidence before claims. |
+| [`deepseek-harness-ops`](skills/deepseek-harness-ops/SKILL.md) | A DeepSeek batch harness needs safe install, MCP, local proof, live micro-smoke, or scale-ramp handling. | Fake/dry-run proof, MCP smoke, approval packet, real-service e2e, review packet, cost ledger, and side-effect report. |
 | [`repo-safety-kit`](skills/repo-safety-kit/SKILL.md) | A repo needs practical guardrails before agents or humans move quickly. | Agent guidance, hooks, verify scripts, CI, Dependabot, CodeQL or Scorecard guidance, security docs, and release hygiene. |
 
 ## Design philosophy
@@ -104,6 +106,7 @@ mkdir -p ~/.agents/skills && tmpdir="$(mktemp -d)" && curl -fsSL https://github.
 git clone https://github.com/tylerbuilds/tyler-skills.git
 mkdir -p ~/.agents/skills
 cp -R tyler-skills/skills/cloudflare-website-hardening ~/.agents/skills/
+cp -R tyler-skills/skills/deepseek-harness-ops ~/.agents/skills/
 cp -R tyler-skills/skills/repo-safety-kit ~/.agents/skills/
 cp -R tyler-skills/skills/batch-sprint ~/.agents/skills/
 ```
@@ -124,6 +127,7 @@ cd tyler-skills
 ```text
 /repo-safety-kit /path/to/repo
 /cloudflare-website-hardening example.com
+/deepseek-harness-ops /path/to/deepseek-harness
 /batch-sprint "Ship this bounded repo change through issues, PR, proof, and closeout"
 ```
 
