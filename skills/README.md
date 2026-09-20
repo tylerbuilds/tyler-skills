@@ -6,6 +6,7 @@ These are the public skills currently included in this repo.
 | --- | --- |
 | [`batch-sprint`](batch-sprint/SKILL.md) | Helps an agent run a bounded delivery sprint through issue setup, isolated branches, proof, pull requests, approved merge, cleanup, and closeout. |
 | [`cloudflare-website-hardening`](cloudflare-website-hardening/SKILL.md) | Helps an agent review and harden a Cloudflare website with scoped credentials, read-only proof, careful mutation gates, and clear verification. |
+| [`site-soul`](site-soul/SKILL.md) | Helps an agent make an existing founder-owned website feel deliberately authored and evidence-led without an unnecessary rebrand or generic template redesign. |
 | [`repo-safety-kit`](repo-safety-kit/SKILL.md) | Helps an agent audit and bootstrap a repo with practical development, security, CI, dependency, and public-release safety defaults. |
 
 ## Add another skill

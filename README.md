@@ -62,6 +62,7 @@ cp -R skills/repo-safety-kit ~/.agents/skills/
 | --- | --- | --- |
 | [`batch-sprint`](skills/batch-sprint/SKILL.md) | A job needs the full delivery loop rather than a one-off edit. | Scope, issue setup, isolated implementation, proof, PR review, approved merge, cleanup, and closeout. |
 | [`cloudflare-website-hardening`](skills/cloudflare-website-hardening/SKILL.md) | A Cloudflare-backed website needs review or hardening. | DNS, HTTP, token-scope, ruleset, Access, Turnstile, origin-firewall, and smoke-test evidence before claims. |
+| [`site-soul`](skills/site-soul/SKILL.md) | An existing founder-owned site needs clearer evidence and creative direction without an unnecessary rebrand. | Preserved identity, evidence-first changes, resource decisions, responsive browser proof, and explicit pending gaps. |
 | [`repo-safety-kit`](skills/repo-safety-kit/SKILL.md) | A repo needs practical guardrails before agents or humans move quickly. | Agent guidance, hooks, verify scripts, CI, Dependabot, CodeQL or Scorecard guidance, security docs, and release hygiene. |
 
 ## Design philosophy
