@@ -65,6 +65,14 @@ cp -R skills/repo-safety-kit ~/.agents/skills/
 | [`site-soul`](skills/site-soul/SKILL.md) | An existing founder-owned site needs clearer evidence and creative direction without an unnecessary rebrand. | Preserved identity, evidence-first changes, resource decisions, responsive browser proof, and explicit pending gaps. |
 | [`repo-safety-kit`](skills/repo-safety-kit/SKILL.md) | A repo needs practical guardrails before agents or humans move quickly. | Agent guidance, hooks, verify scripts, CI, Dependabot, CodeQL or Scorecard guidance, security docs, and release hygiene. |
 
+## Featured: Site Soul
+
+[**Site Soul**](skills/site-soul/README.md) helps an agent make an established website feel deliberately authored without forcing a rebrand. It preserves the founder's recognised choices, puts truthful product evidence before generic promotional panels, and requires browser proof alongside code checks.
+
+```text
+/site-soul <site, repository or design brief>
+```
+
 ## Design philosophy
 
 1. Keep skills public-safe by default.
